@@ -60,7 +60,7 @@ function removeThis(itemIndex){
     history.splice(itemIndex, 1);
     showHistory();
 }
-
+// they hear
 calcswitchBtn.addEventListener('click', () => switchCalc());
 
 function switchCalc(){

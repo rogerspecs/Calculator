@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
 </head>
 <body>
     
@@ -14,7 +14,20 @@
         <div class="calc">
             <div class="result">
                 <p id="input"></p>
-                <div id="history"></div>
+                <!-- <div id="history"></div> -->
+                <div id="display">
+                    <span id="history">
+                        23+3=26 
+                        <button class="remove" value="0">
+                            <img src="delete.png" title="Delete icon">
+                        </button>
+                    </span>
+                    <div class="navigate">
+                        <button id="next" class="freeze"><i class="las la-angle-double-left"></i></button>
+                        <span id="position">1/2</span>
+                        <button id="prev" class="freeze"><i class="las la-angle-double-right"></i></button>
+                    </div>
+                </div>
                 <p id="output"></p>
             </div>
             <div class="line">

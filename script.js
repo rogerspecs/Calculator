@@ -7,7 +7,7 @@ const clearBtn = document.getElementById('clear');
 const deleteBtn = document.getElementById('delete');
 const undoBtn = document.getElementById('undo');
 const calcswitchBtn = document.getElementById('calcswitch');
-const historyView = document.getElementById('history');
+// const historyView = document.getElementById('history');
 const historyBtn = document.getElementById('historyBtn');
 
 // DECLAER LIST OF OPERATORS
@@ -25,10 +25,100 @@ if(is_calc_on){
 }else{
     calculatorDisplay.textContent = "";
     output.textContent = "";
-    historyView.textContent = "";
+    // historyView.textContent = "";
 }
 
 let history =[];
+
+
+// --------------------------------------------------------------------------
+const NEXTBTN = document.getElementById('next');
+const PREVIOUSBTN = document.getElementById('prev');
+const HISTORY = document.getElementById('history');
+
+let currentIndex = 0;
+NEXTBTN.addEventListener('click', () => showNextValue());
+PREVIOUSBTN.addEventListener('click', () => showPreviousValue());
+
+const POSiTIONVIEW = document.getElementById('position');
+
+let position = 0;
+let full_position = "";
+let historyTotal = 0;
+
+function showNextValue(){
+    historyTotal = history.length
+    if(historyTotal != 0){
+        console.log(historyTotal)
+        console.log(history)
+
+        let lastIndex = historyTotal  - 1;
+
+        position = currentIndex + 1;
+
+        if(currentIndex <= lastIndex){
+            full_position = position + "/" + historyTotal
+            HISTORY.innerHTML = history[currentIndex] + '<button class="remove" value="0"> <img src="delete.png" title="Delete icon"></button>';
+            currentIndex++;
+        }else{
+            full_position = "1/" + historyTotal
+            currentIndex = 0;
+            alert("No more history");
+        }
+        POSiTIONVIEW.textContent = full_position
+    }
+}
+
+function showPreviousValue(){
+
+    historyTotal = history.length
+    if(historyTotal != 0){
+        let shownHistory = document.getElementById('history');
+        let history_content = shownHistory.textContent;
+        let history_value = history_content.split(" ");
+        // console.log(history_value)
+
+        let actual_history = history_value[0];
+        let shownHistoryIndex = history.indexOf(actual_history);
+
+        if(shownHistoryIndex >= 0){
+            if(shownHistoryIndex != 0){
+                let previousIndex = shownHistoryIndex - 1;
+
+                position = previousIndex + 1;
+                full_position = position + "/" + historyTotal
+
+                HISTORY.innerHTML = history[previousIndex] + '<button class="remove" value="0"> <img src="delete.png" title="Delete icon"></button>';
+            }
+            
+        }else{
+            // alert("This is the First History Value")
+            full_position = historyTotal + "/" + historyTotal
+
+            let previousIndex = history.length - 1;
+            HISTORY.innerHTML = history[previousIndex] + '<button class="remove" value="0"> <img src="delete.png" title="Delete icon"></button>';
+        }
+
+        POSiTIONVIEW.textContent = full_position
+    }
+
+}
+
+// ------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function addToHistory(equation){
     history.push(equation);
@@ -37,37 +127,37 @@ function addToHistory(equation){
 historyBtn.addEventListener('click', () => clearHistory())
 function clearHistory(){
     history = [];
-    historyView.innerHTML = "";
+    // historyView.innerHTML = "";
 }
 
 function showHistory(){
     console.log(history)
     // VARIABLE TO HOLD HISTORY VALUES
-    let allHistory = "";//historyView.textContent;
+    // let allHistory = "";//historyView.textContent;
     // CLEAR CONTENT IN HISTORY VIEW
-    historyView.textContent = "";
+    // historyView.textContent = "";
     // LOOP THROUGHT THROUGH EACH HISTORY ARRAY
     history.forEach((historyValue) => {
         // ADD EACH HISTORY 
         allHistory += "<span>"+historyValue + "<button class=\"remove\" onclick=\" removeThis(this.value) \" value=" + history.indexOf(historyValue) +">Delete</button></span>"; 
         console.log(historyValue);
     });
-    historyView.innerHTML = allHistory;
+    // historyView.innerHTML = allHistory;
     
 }
 
 function removeThis(itemIndex){
     history.splice(itemIndex, 1);
-    showHistory();
+    // showHistory();
 }
-
+// they hear
 calcswitchBtn.addEventListener('click', () => switchCalc());
 
 function switchCalc(){
     if(is_calc_on){
         calculatorDisplay.textContent = "";
         output.textContent = "";
-        historyView.textContent = "";
+        // historyView.textContent = "";
 
         // SWITCH OFF THE CALCULATOR
         is_calc_on = false;
@@ -78,7 +168,7 @@ function switchCalc(){
         // SWITCH ON THE CALCULATOR 
         is_calc_on = true;
         calcswitchBtn.textContent = "Off";
-        showHistory();
+        // showHistory();
     }
 }
 // list of all buttons
@@ -179,7 +269,7 @@ function performOperation(firstNumber, secondNumber, operator){
     equationWithNoAnswer = calculatorDisplay.textContent;
     let completeEquation = equationWithNoAnswer + ' = ' + answer;
     addToHistory(completeEquation);
-    showHistory()
+    // showHistory()
 
 }
 

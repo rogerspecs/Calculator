@@ -92,7 +92,7 @@ body{
     font-size: 13px;
     border-radius: 0.21rem;
 }
-#history{
+/* #history{
     height: 90%;
     width: 90%;
     padding: .3rem;
@@ -100,7 +100,7 @@ body{
     flex-direction: column;
     overflow: hidden;
     overflow-y: scroll;
-}
+} */
 .remove{
     border: 0;
     background-color: orangered;
@@ -111,4 +111,65 @@ span{
     display: flex;
     justify-content: space-between;
     margin-bottom: .1rem;
+}
+/* ----------------------------------------- */
+
+#display{
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    padding: .5rem 1rem;
+    background-color: dodgerblue;
+    color: #fff;
+}
+
+#display span{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+
+#display span button{
+    border: 0;
+    margin: 0;
+    background-color: red;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50%;
+
+}
+
+#display span button img{
+    height: inherit;
+    /* width: inherit; */
+    display: flex;
+    
+}
+
+.navigate{
+    display: flex;
+    justify-content: space-around;
+}
+.navigate button{
+    border: 0;
+    color: #fff;
+    background-color: coral;
+    padding: 0 .6rem;
+    border-radius: .3rem;
+    cursor: pointer;
+    margin: .3rem 0;
+}
+.navigate #next{
+    background-color: seagreen;
+}
+#position{
+    padding-top: .5rem;
+    font-size: 14px;
 }
